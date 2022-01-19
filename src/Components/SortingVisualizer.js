@@ -103,13 +103,68 @@ export function SortingVisualizer() {
 
                // hacky method to remove last bar
                let lastbar = document.getElementById(RandomArray.length).style;
-               lastbar.style = "none";
+               lastbar.backgroundColor = "white";
+               lastbar.boxShadow = "none";
                // Changes the Style back to original
                bar1.backgroundColor = "#7b68ee";
                bar2.backgroundColor = "#7b68ee";
                sorted = true;
           }
           if (sorted) finishedAnimation();
+     }
+
+     const quickSort = () => {
+          let left = 0;
+          let right = RandomArray.length - 1;
+
+          sortQuickSort(RandomArray, left, right);
+          setTimeout(finishedAnimation, 1000);
+     }
+
+     const sortQuickSort = async (arr, left, right) => {
+          if (left < right) {
+               let partitionIndex = partition(arr, left, right);
+
+               setRandomArray([...RandomArray, arr]);
+               await sleep(animationSpeed + 60);
+               sortQuickSort(arr, left, partitionIndex - 1);
+               sortQuickSort(arr, partitionIndex + 1, right);
+          }
+     }
+
+     const partition = (arr, start, end) => {
+          let pivot = arr[end];
+          let i = start - 1;
+
+          for (let j = start; j < end; j++) {
+               if (arr[j] < pivot) {
+                    i++;
+                    let temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+
+                    let bar1 = document.getElementById(i).style;
+                    let bar2 = document.getElementById(j).style;
+                    
+                    bar1.backgroundColor = "red";
+                    bar2.backgroundColor = "orange";
+
+                    setTimeout(() => {
+                         let lastBar = document.getElementById(arr.length).style;
+                         lastBar.backgroundColor = "white";
+                         lastBar.boxShadow = "none";
+                         bar1.backgroundColor = "#7b68ee";
+                         bar2.backgroundColor = "#7b68ee";
+                    }, 200);
+
+                    setRandomArray([...RandomArray, arr]);
+               }
+          }
+          let temp = arr[i + 1];
+          arr[i + 1] = arr[end];
+          arr[end] = temp;
+
+          return i + 1;
      }
 
      return (
@@ -128,6 +183,10 @@ export function SortingVisualizer() {
                               setWhichVisualization({ name: "INSERTION SORT", timeComplexity: "O(n^2)"});
                               insertionSort();
                          }}>Insertion Sort</button>
+                         <button onClick={() => {
+                              setWhichVisualization({ name: "QUICK SORT", timeComplexity: "O(n log n)"});
+                              quickSort();
+                         }}>Quick Sort</button>
                     </div>
                </div>
                <div className="graph-container">
