@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sorting-algorithms/static/css/main.bc4c694d.css",
+    "main.js": "/sorting-algorithms/static/js/main.34014777.js",
+    "index.html": "/sorting-algorithms/index.html",
+    "main.bc4c694d.css.map": "/sorting-algorithms/static/css/main.bc4c694d.css.map",
+    "main.34014777.js.map": "/sorting-algorithms/static/js/main.34014777.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc4c694d.css",
+    "static/js/main.34014777.js"
+  ]
+}
