@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&family=Spline+Sans&display=swap');
+
+$primary-app-purple: #7b68ee;
+$primary-app-white: #fff;
+$primary-app-contrast: #3d3c3c;
+
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+     height: 100%;
+     width: 100%;
+}
+
+.App {
+     height: 100%;
+}
+
+.container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     .title {
+          height: 20%;
+          text-align: center;
+          padding: 25px;
+          // border: 2px solid black;
+     }
+     .dashboard {
+          width: 100%;
+          height: 25%;
+          background-color: $primary-app-contrast;
+          .button-container {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               gap: 15px;
+               button {
+                    width: 150px;
+                    height: 50px;
+                    border-radius: 5px;
+                    border: 2px solid $primary-app-purple;
+                    background-color: transparent;
+                    font-size: 20px;
+                    font-weight: bold;
+                    transition: 0.2s;
+                    color: $primary-app-white;
+                    &:hover {
+                         background-color: $primary-app-purple;
+                         color: $primary-app-white;
+                         cursor: pointer;
+                    }
+               }
+          }
+     }
+     .graph-container {
+          width: 100%;
+          height: 100%;
+          padding: 10px;
+          .graph {
+               display: flex;
+               justify-content: center;
+               align-items: flex-end;
+               flex-direction: row;
+               gap: 10px;
+               width: 90%;
+               margin: 0 auto;
+               border-bottom: 2px solid $primary-app-purple;
+               .bar {
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    width: 25px;
+                    background-color: #7b68ee;
+               }
+          }
+     }
+}
