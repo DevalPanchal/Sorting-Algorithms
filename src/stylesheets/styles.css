@@ -54,6 +54,14 @@
   gap: 15px;
 }
 
+.container .dashboard .button-container .reset-btn {
+  border: 2px solid red;
+}
+
+.container .dashboard .button-container .reset-btn:hover {
+  background-color: red;
+}
+
 .container .dashboard .button-container button {
   width: 150px;
   height: 50px;

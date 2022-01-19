@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 const LIMIT = 30;
 
@@ -8,6 +9,8 @@ export function SortingVisualizer() {
      const [animationSpeed, setAnimationSpeed] = useState(60);
 
      const [whichVisualization, setWhichVisualization] = useState({ name: "", timeComplexity: "" });
+
+     // let navigate = useNavigate();
 
      useEffect(() => {
           randomizeArray();
@@ -167,6 +170,10 @@ export function SortingVisualizer() {
           return i + 1;
      }
 
+     const checkReset = () => {
+          randomizeArray();
+     }
+
      return (
           <div className="container">
                <div className="title">
@@ -175,6 +182,7 @@ export function SortingVisualizer() {
                <div className="dashboard">
                
                     <div className="button-container">
+                         <button className="reset-btn" onClick={ checkReset }>Reset Array</button>
                          <button onClick={() => {
                               setWhichVisualization({ name: "BUBBLE SORT", timeComplexity: "O(n^2)" });
                               bubbleSort();
