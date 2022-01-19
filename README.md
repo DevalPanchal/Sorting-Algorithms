@@ -19,4 +19,4 @@ Version 1.0
 -Version 1.1 (Currently in development)
 - Add speed variability
 - Add number of bars present
-- Add Insertion Sort visualization
+- ~~Add Insertion Sort visualization~~
