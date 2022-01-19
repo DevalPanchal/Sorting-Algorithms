@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { generateRandomArray } from '../utility/Random';
 
 const LIMIT = 30;
 
 export function SortingVisualizer() {
      const [RandomArray, setRandomArray] = useState([]);
 
-     const [animationSpeed, setAnimationSpeed] = useState(50);
+     const [animationSpeed, setAnimationSpeed] = useState(60);
+
+     const [whichVisualization, setWhichVisualization] = useState({ name: "", timeComplexity: "" });
 
      useEffect(() => {
           randomizeArray();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
      }, []);
 
      function randomizeArray() {
@@ -43,45 +45,7 @@ export function SortingVisualizer() {
           }
      }
 
-     async function bubbleSort() {
-          // var currentArr = RandomArray;
-          
-          var sorted = false;
-
-          while (!sorted) {
-               sorted = true;
-               
-               for (var i = 0; i < RandomArray.length - 1; i++) {
-                    if (RandomArray[i] > RandomArray[i + 1]) {
-                         var swap1 = RandomArray[i];
-                         var swap2 = RandomArray[i + 1];
-                         RandomArray[i] = swap2;
-                         RandomArray[i + 1] = swap1;
-                         setRandomArray([...RandomArray, RandomArray]);
-                         
-                         //Changes the Style while swapping
-                         let bar1 = document.getElementById(i).style;
-                         let bar2 = document.getElementById(i + 1).style;
-                         
-                         bar1.backgroundColor = "orange";
-                         bar2.backgroundColor = "red";
-
-                         await sleep(animationSpeed);
-                         
-                         //Changes the Style back to original
-                         let lastbar = document.getElementById(RandomArray.length).style;
-                         lastbar.backgroundColor = "white";
-                         bar1.backgroundColor = "#7b68ee";
-                         bar2.backgroundColor = "#7b68ee";
-                         
-                         sorted = false;
-                    }
-               }
-               if (sorted) finishedAnimation();
-          }
-     }
-
-     const bubbleSort2 = async () => {
+     const bubbleSort = async () => {
           let sorted = false;
           for (let i = 0; i < RandomArray.length; i++) {
                for (let j = 0; j < (RandomArray.length - i - 1); j++) {
@@ -101,10 +65,11 @@ export function SortingVisualizer() {
 
                          await sleep(animationSpeed);
                          
-                         // TODO: Temporary fix to a bug
+                         // hacky method to remove last bar
                          let lastbar = document.getElementById(RandomArray.length).style;
                          lastbar.backgroundColor = "white";
-                         //Changes the Style back to original
+                         lastbar.boxShadow = "none";
+                         // Changes the Style back to original
                          bar1.backgroundColor = "#7b68ee";
                          bar2.backgroundColor = "#7b68ee";
                          
@@ -115,18 +80,65 @@ export function SortingVisualizer() {
           }
      }
 
+     const insertionSort = async () => {
+          let sorted = false;
+          let n = RandomArray.length;
+          for (let i = 1; i < n; i++) {
+               let current = RandomArray[i];
+               let j = i - 1;
+
+               while ((j > -1) && (current < RandomArray[j])) {
+                    RandomArray[j + 1] = RandomArray[j];
+                    j--;
+               }
+               RandomArray[j + 1] = current;
+               setRandomArray([...RandomArray, RandomArray]);
+
+               let bar1 = document.getElementById(j + 1).style;
+               let bar2 = document.getElementById(i).style;
+               bar1.backgroundColor = "red";
+               bar2.backgroundColor = "orange";
+
+               await sleep(animationSpeed);
+
+               // hacky method to remove last bar
+               let lastbar = document.getElementById(RandomArray.length).style;
+               lastbar.style = "none";
+               // Changes the Style back to original
+               bar1.backgroundColor = "#7b68ee";
+               bar2.backgroundColor = "#7b68ee";
+               sorted = true;
+          }
+          if (sorted) finishedAnimation();
+     }
+
      return (
           <div className="container">
                <div className="title">
                     <h1>Sorting Algorithm Visualization</h1>
                </div>
                <div className="dashboard">
+               
                     <div className="button-container">
-                         <button onClick={ bubbleSort2 }>Bubble Sort</button>
-                         <button>Insertion Sort</button>
+                         <button onClick={() => {
+                              setWhichVisualization({ name: "BUBBLE SORT", timeComplexity: "O(n^2)" });
+                              bubbleSort();
+                         }}>Bubble Sort</button>
+                         <button onClick={() => {
+                              setWhichVisualization({ name: "INSERTION SORT", timeComplexity: "O(n^2)"});
+                              insertionSort();
+                         }}>Insertion Sort</button>
                     </div>
                </div>
                <div className="graph-container">
+                    {
+                         whichVisualization !== "" && (
+                              <div className="which-vis">
+                                   <h2>Algorithm: <p>{ whichVisualization.name }</p></h2>
+                                   <h2>Time Complexity: <p>{ whichVisualization.timeComplexity }</p></h2>
+                              </div>
+                         )
+                    }
                     <div className="graph">
                          {
                               RandomArray &&
