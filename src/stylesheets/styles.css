@@ -51,7 +51,19 @@
   background-color: #3d3c3c;
 }
 
-.container .dashboard h1 {
+.container .dashboard .dashboard-util {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+}
+
+.container .dashboard .dashboard-util h1 {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,6 +74,30 @@
       -ms-flex-align: center;
           align-items: center;
   color: white;
+}
+
+.container .dashboard .dashboard-util button {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid #7b68ee;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #fff;
+}
+
+.container .dashboard .dashboard-util button:hover {
+  background-color: #7b68ee;
+  color: #fff;
+  cursor: pointer;
+}
+
+.container .dashboard .dashboard-util button:active {
+  background-color: #7b68ee;
+  color: #fff;
 }
 
 .container .dashboard .button-container {

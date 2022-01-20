@@ -11,6 +11,8 @@ export function SortingVisualizer() {
 
      const [whichVisualization, setWhichVisualization] = useState({ name: "", timeComplexity: "" });
 
+     const [numBars, setNumBars] = useState(30);
+
      // let navigate = useNavigate();
 
      useEffect(() => {
@@ -24,7 +26,7 @@ export function SortingVisualizer() {
             bar.backgroundColor = "#7b68ee";
           }
           var array = [];
-          for (var j = 0; j < LIMIT; j++) {
+          for (var j = 0; j < numBars; j++) {
             array.push(randomVals(20, 400));
           }
           setRandomArray(array);
@@ -277,7 +279,14 @@ export function SortingVisualizer() {
                     <h1>Sorting Algorithm Visualization</h1>
                </div> */}
                <div className="dashboard">
-                    <h1>Sorting Algorithm Visualization</h1>
+                    <div className="dashboard-util">
+                         <h1>Sorting Algorithm Visualization</h1>
+                         <div className="button-container">
+                              <button onClick={() => setAnimationSpeed(150)}>Slow</button>
+                              <button onClick={() => setAnimationSpeed(100)}>Normal</button>
+                              <button onClick={() => setAnimationSpeed(50)}>Fast</button>
+                         </div>
+                    </div>
                     <div className="button-container">
                          <button className="reset-btn" onClick={ checkReset }>Reset Array</button>
                          <button onClick={() => {
@@ -295,8 +304,13 @@ export function SortingVisualizer() {
                          <button onClick={() => {
                               setWhichVisualization({ name: "MERGE SORT", timeComplexity: "O(n log n)" });
                               mergeSort(RandomArray, RandomArray.length);
-                              setTimeout(finishedAnimation, 1500);
+                              setTimeout(finishedAnimation, 2000);
                          }}>Merge Sort</button>
+                         <button>Heap Sort</button>
+                         <input type="range" min={ 10 } max={ 100 } defaultValue={ numBars } className="slider" id="myRange" onChange={(e) => {
+                              setNumBars(e.target.value);
+                              checkReset();
+                         }} />
                     </div>
                </div>
                <div className="graph-container">
