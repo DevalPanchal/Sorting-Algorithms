@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { AlgorithmInfo } from './AlgorithmInfo';
 // import { useNavigate } from 'react-router-dom';
 
-const LIMIT = 30;
 
 export function SortingVisualizer() {
      const [RandomArray, setRandomArray] = useState([]);
@@ -267,6 +266,83 @@ export function SortingVisualizer() {
           }
      }
 
+     const heapSort = async (arr, n) => {
+          // build heap
+          for (let i = parseInt(n / 2 - 1); i >= 0; i--) {
+               maxHeapify(arr, n, i);
+
+               setRandomArray([...RandomArray, arr]);
+
+               if (i >= 0) {
+                    let bar1 = document.getElementById(i).style;
+                    let bar2 = document.getElementById(i + 1).style;
+                    
+                    bar1.backgroundColor = "red";
+                    bar2.backgroundColor = "orange";
+     
+                    await sleep(animationSpeed);
+     
+                    bar1.backgroundColor = "#7b68ee";
+                    bar2.backgroundColor = "#7b68ee";
+               } else {
+                    await sleep(animationSpeed);
+               }   
+          }
+
+
+          for (let i = n - 1; i >= 0; i--) {
+               let temp = arr[0];
+               arr[0] = arr[i];
+               arr[i] = temp;
+
+               maxHeapify(arr, i, 0);
+               
+               setRandomArray([...RandomArray, arr]);
+
+               if (i >= 0) {
+                    let bar1 = document.getElementById(i).style;
+                    let bar2 = document.getElementById(i - 1).style;
+                    
+                    bar1.backgroundColor = "red";
+                    bar2.backgroundColor = "orange";
+     
+                    await sleep(animationSpeed);
+     
+                    bar1.backgroundColor = "#7b68ee";
+                    bar2.backgroundColor = "#7b68ee";
+               } else {
+                    await sleep(animationSpeed);
+               }    
+
+          }
+          
+     }
+
+     const maxHeapify = (arr, n, i) => {
+          let largest = i;
+          let l = 2 * i + 1 // left child
+          let r = 2 * i + 2 // right child
+
+          // check if left child is smaller than root
+          if (l < n && arr[l] > arr[largest]) {
+               largest = l;
+          }
+
+          // check if right child is smaller than root
+          if (r < n && arr[r] > arr[largest]) {
+               largest = r;
+          }
+
+          // check if smallest is not root
+          if (largest !== i) {
+               let temp = arr[i];
+               arr[i] = arr[largest];
+               arr[largest] = temp;
+
+               // Max heapify the sub tree
+               maxHeapify(arr, n, largest);
+          }
+     }
 
      const checkReset = () => {
           randomizeArray();
@@ -306,8 +382,11 @@ export function SortingVisualizer() {
                               mergeSort(RandomArray, RandomArray.length);
                               setTimeout(finishedAnimation, 2000);
                          }}>Merge Sort</button>
-                         <button>Heap Sort</button>
-                         <input type="range" min={ 10 } max={ 100 } defaultValue={ numBars } className="slider" id="myRange" onChange={(e) => {
+                         <button onClick={() => {
+                              setWhichVisualization({ name: "HEAP SORT (MAX HEAP)", timeComplexity: "O(n log n)" });
+                              heapSort(RandomArray, RandomArray.length);
+                         }}>Heap Sort</button>
+                         <input className="slider" id="myRange" type="range" min={ 10 } max={ 100 } defaultValue={ numBars } onChange={(e) => {
                               setNumBars(e.target.value);
                               checkReset();
                          }} />

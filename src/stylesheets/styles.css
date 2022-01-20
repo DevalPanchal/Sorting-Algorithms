@@ -76,6 +76,14 @@
   color: white;
 }
 
+.container .dashboard .dashboard-util .button-container {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
 .container .dashboard .dashboard-util button {
   width: 150px;
   height: 50px;
@@ -105,7 +113,6 @@
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 15px;
 }
 
 .container .dashboard .button-container .reset-btn {
