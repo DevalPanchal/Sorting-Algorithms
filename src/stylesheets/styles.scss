@@ -53,6 +53,9 @@ $green: #228b33;
                     width: 60%;
                     display: flex;
                     gap: 10px;
+                    .btn-active {
+                         background-color: $primary-app-purple;
+                    }
                }
                button {
                     width: 150px;
@@ -89,6 +92,9 @@ $green: #228b33;
                     &:hover {
                          background-color: red;
                     }
+               }
+               .btn-active {
+                    background-color: $primary-app-purple;
                }
                button {
                     width: 150px;

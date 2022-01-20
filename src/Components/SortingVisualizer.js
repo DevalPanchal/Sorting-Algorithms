@@ -46,7 +46,7 @@ export function SortingVisualizer() {
           for (var i = 0; i < RandomArray.length; i++) {
                var bar = document.getElementById(i).style;
                bar.backgroundColor = "#228b33";
-               await sleep(animationSpeed);
+               await sleep(10);
           }
      }
 
@@ -364,31 +364,31 @@ export function SortingVisualizer() {
                     <div className="dashboard-util">
                          <h1>Sorting Algorithm Visualization</h1>
                          <div className="button-container">
-                              <button onClick={() => setAnimationSpeed(150)}>Slow</button>
-                              <button onClick={() => setAnimationSpeed(100)}>Normal</button>
-                              <button onClick={() => setAnimationSpeed(50)}>Fast</button>
+                              <button className={ animationSpeed === 150 ? "btn-active" : ""} onClick={() => setAnimationSpeed(150)}>Slow</button>
+                              <button className={ animationSpeed === 100 ? "btn-active" : "" } onClick={() => setAnimationSpeed(100)}>Normal</button>
+                              <button className={ animationSpeed === 50 ? "btn-active" : ""} onClick={() => setAnimationSpeed(50)}>Fast</button>
                          </div>
                     </div>
                     <div className="button-container">
                          <button className="reset-btn" onClick={ checkReset }>Reset Array</button>
-                         <button onClick={() => {
+                         <button className={ whichVisualization.name === "BUBBLE SORT" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "BUBBLE SORT", timeComplexity: "O(n^2)" });
                               bubbleSort();
                          }}>Bubble Sort</button>
-                         <button onClick={() => {
+                         <button className={ whichVisualization.name === "INSERTION SORT" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "INSERTION SORT", timeComplexity: "O(n^2)"});
                               insertionSort();
                          }}>Insertion Sort</button>
-                         <button onClick={() => {
+                         <button className={ whichVisualization.name === "QUICK SORT" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "QUICK SORT", timeComplexity: "O(n log n)"});
                               quickSort();
                          }}>Quick Sort</button>
-                         <button onClick={() => {
+                         <button className={ whichVisualization.name === "MERGE SORT" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "MERGE SORT", timeComplexity: "O(n log n)" });
                               mergeSort(RandomArray, RandomArray.length);
                               setTimeout(finishedAnimation, 2000);
                          }}>Merge Sort</button>
-                         <button onClick={() => {
+                         <button className={ whichVisualization.name === "HEAP SORT (MAX HEAP)" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "HEAP SORT (MAX HEAP)", timeComplexity: "O(n log n)" });
                               heapSort(RandomArray, RandomArray.length);
                          }}>Heap Sort</button>

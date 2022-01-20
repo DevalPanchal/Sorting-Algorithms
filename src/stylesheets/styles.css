@@ -84,6 +84,10 @@
   gap: 10px;
 }
 
+.container .dashboard .dashboard-util .button-container .btn-active {
+  background-color: #7b68ee;
+}
+
 .container .dashboard .dashboard-util button {
   width: 150px;
   height: 50px;
@@ -125,6 +129,10 @@
 
 .container .dashboard .button-container .reset-btn:hover {
   background-color: red;
+}
+
+.container .dashboard .button-container .btn-active {
+  background-color: #7b68ee;
 }
 
 .container .dashboard .button-container button {
