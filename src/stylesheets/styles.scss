@@ -4,6 +4,7 @@ $primary-app-purple: #7b68ee;
 $primary-app-white: #fff;
 $primary-app-contrast: #3d3c3c;
 $bar-box-shadow: 0px -1px 5px 0px #000000;
+$green: #228b33;
 
 * {
      margin: 0;
@@ -78,6 +79,11 @@ $bar-box-shadow: 0px -1px 5px 0px #000000;
                display: grid;
                grid-template-columns: 1fr 1fr 1fr 1fr;
                // gap: 15px;
+               .slider {
+                    &:hover {
+                         cursor: pointer;
+                    }
+               }
                .reset-btn {
                     border: 2px solid red;
                     &:hover {

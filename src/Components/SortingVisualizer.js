@@ -45,7 +45,7 @@ export function SortingVisualizer() {
      async function finishedAnimation() {
           for (var i = 0; i < RandomArray.length; i++) {
                var bar = document.getElementById(i).style;
-               bar.backgroundColor = "green";
+               bar.backgroundColor = "#228b33";
                await sleep(animationSpeed);
           }
      }
@@ -281,7 +281,10 @@ export function SortingVisualizer() {
                     bar2.backgroundColor = "orange";
      
                     await sleep(animationSpeed);
-     
+                    
+                    let lastBar = document.getElementById(arr.length).style;
+                    lastBar.backgroundColor = "white";
+                    lastBar.boxShadow = "none";
                     bar1.backgroundColor = "#7b68ee";
                     bar2.backgroundColor = "#7b68ee";
                } else {
@@ -301,13 +304,16 @@ export function SortingVisualizer() {
 
                if (i >= 0) {
                     let bar1 = document.getElementById(i).style;
-                    let bar2 = document.getElementById(i - 1).style;
+                    let bar2 = document.getElementById(i + 1).style;
                     
                     bar1.backgroundColor = "red";
                     bar2.backgroundColor = "orange";
      
                     await sleep(animationSpeed);
-     
+
+                    let lastBar = document.getElementById(arr.length).style;
+                    lastBar.backgroundColor = "white";
+                    lastBar.boxShadow = "none";
                     bar1.backgroundColor = "#7b68ee";
                     bar2.backgroundColor = "#7b68ee";
                } else {
@@ -315,7 +321,7 @@ export function SortingVisualizer() {
                }    
 
           }
-          
+          finishedAnimation();
      }
 
      const maxHeapify = (arr, n, i) => {

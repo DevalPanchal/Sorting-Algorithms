@@ -115,6 +115,10 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.container .dashboard .button-container .slider:hover {
+  cursor: pointer;
+}
+
 .container .dashboard .button-container .reset-btn {
   border: 2px solid red;
 }
