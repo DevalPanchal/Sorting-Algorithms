@@ -30,13 +30,22 @@ $bar-box-shadow: 0px -1px 5px 0px #000000;
           // border: 2px solid black;
      }
      .dashboard {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           width: 100%;
           height: 25%;
+          padding: 25px;
           background-color: $primary-app-contrast;
-          .button-container {
+          h1 {
                display: flex;
-               justify-content: center;
+               justify-content: left;
                align-items: center;
+               color: white;
+          }
+          .button-container {
+               display: grid;
+               grid-template-columns: 1fr 1fr 1fr 1fr;
                gap: 15px;
                .reset-btn {
                     border: 2px solid red;
@@ -66,7 +75,7 @@ $bar-box-shadow: 0px -1px 5px 0px #000000;
           width: 100%;
           height: 100%;
           padding: 10px;
-          border: 2px solid black;
+          // border: 2px solid black;
           display: flex;
           justify-content: center;
           align-items: flex-end;
@@ -98,6 +107,16 @@ $bar-box-shadow: 0px -1px 5px 0px #000000;
                     background-color: #7b68ee;
                     box-shadow: $bar-box-shadow;
                }
+          }
+          
+     }
+     .information-container {
+          text-align: center;
+          height: 100%;
+          margin: 15px;
+          border: 2px solid red;
+          .algorithms {
+               text-align: left;
           }
      }
 }

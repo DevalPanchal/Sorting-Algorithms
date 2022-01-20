@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AlgorithmInfo } from './AlgorithmInfo';
 // import { useNavigate } from 'react-router-dom';
 
 const LIMIT = 30;
@@ -6,7 +7,7 @@ const LIMIT = 30;
 export function SortingVisualizer() {
      const [RandomArray, setRandomArray] = useState([]);
 
-     const [animationSpeed, setAnimationSpeed] = useState(60);
+     const [animationSpeed, setAnimationSpeed] = useState(80);
 
      const [whichVisualization, setWhichVisualization] = useState({ name: "", timeComplexity: "" });
 
@@ -170,17 +171,113 @@ export function SortingVisualizer() {
           return i + 1;
      }
 
+     const mergeSort = async (arr, n) => {
+          let curr_size;
+          let left_start;
+          for (curr_size = 1; curr_size <= n - 1; curr_size = 2 * curr_size) {
+               await sleep(animationSpeed);
+               for (left_start = 0; left_start < n - 1; left_start += 2 * curr_size) {
+                    let mid = Math.min(left_start + curr_size - 1, n - 1);
+                    let right_end = Math.min(left_start + 2 * curr_size - 1, n - 1);
+
+                    merge(arr, left_start, mid, right_end);
+               }
+          }
+     }
+
+     const merge = (arr, l, m, r) => {
+          let i, j, k;
+          let n1 = m - l + 1;
+          let n2 = r - m;
+
+          let L = Array(n1).fill(0);
+          let R = Array(n2).fill(0);
+
+          for (i = 0; i < n1; i++) {
+               L[i] = arr[l + i];
+          }
+          for (j = 0; j < n2; j++) {
+               R[j] = arr[m + 1 + j];
+          }
+
+          i = 0;
+          j = 0;
+          k = l;
+
+          while (i < n1 && j < n2) {
+               if (L[i] <= R[j]) {
+                    arr[k] = L[i];
+                    i++;
+                    
+                    setRandomArray([...RandomArray, arr]);
+
+                    let bar1 = document.getElementById(k).style;
+                    let bar2 = document.getElementById(i).style;
+
+                    
+                    bar1.backgroundColor = "red";
+                    bar2.backgroundColor = "orange";
+                    
+                    setTimeout(() => {
+                         let lastBar = document.getElementById(arr.length).style;
+
+                         lastBar.backgroundColor = "white";
+                         lastBar.boxShadow = "none";
+                         bar1.backgroundColor = "#7b68ee";
+                         bar2.backgroundColor = "#7b68ee";
+                    }, 800);
+               } else {
+                    arr[k] = R[j];
+                    j++;
+
+                    setRandomArray([...RandomArray, arr]);
+
+                    let bar1 = document.getElementById(k).style;
+                    let bar2 = document.getElementById(i).style;
+                    
+                    bar1.backgroundColor = "red";
+                    bar2.backgroundColor = "orange";
+                    
+                    setTimeout(() => {
+                         let lastBar = document.getElementById(arr.length).style;
+
+                         lastBar.backgroundColor = "white";
+                         lastBar.boxShadow = "none";
+                         bar1.backgroundColor = "#7b68ee";
+                         bar2.backgroundColor = "#7b68ee";
+                    }, 200);
+               }
+               k++;
+          }
+
+          while (i < n1) {
+               arr[k] = L[i];
+               i++;
+               k++;
+               setRandomArray([...RandomArray, arr]);
+          }
+
+          while (j < n2) {
+               arr[k] = R[j];
+               j++;
+               k++;
+               setRandomArray([...RandomArray, arr]);
+          }
+     }
+
+
      const checkReset = () => {
           randomizeArray();
+          setWhichVisualization({ name: "", timeComplexity: "" });
      }
 
      return (
           <div className="container">
-               <div className="title">
+               {/* <div className="title">
                     <h1>Sorting Algorithm Visualization</h1>
-               </div>
+               </div> */}
                <div className="dashboard">
-               
+                    <h1>Sorting Algorithm Visualization</h1>
                     <div className="button-container">
                          <button className="reset-btn" onClick={ checkReset }>Reset Array</button>
                          <button onClick={() => {
@@ -195,6 +292,11 @@ export function SortingVisualizer() {
                               setWhichVisualization({ name: "QUICK SORT", timeComplexity: "O(n log n)"});
                               quickSort();
                          }}>Quick Sort</button>
+                         <button onClick={() => {
+                              setWhichVisualization({ name: "MERGE SORT", timeComplexity: "O(n log n)" });
+                              mergeSort(RandomArray, RandomArray.length);
+                              setTimeout(finishedAnimation, 1500);
+                         }}>Merge Sort</button>
                     </div>
                </div>
                <div className="graph-container">
@@ -214,8 +316,8 @@ export function SortingVisualizer() {
                               ))
                          }
                     </div>
-                    
                </div>
+               {/* <AlgorithmInfo algorithm={ whichVisualization.name } /> */}
           </div>
      );
 }
