@@ -1,16 +1,266 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&family=Spline+Sans&display=swap");
-* {
+.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 20%;
+  background-color: #3d3c3c;
+}
+
+@media (max-width: 599px) {
+  .dashboard {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.dashboard .dashboard-util {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+
+.dashboard .dashboard-util h1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: white;
   margin: 0;
+}
+
+.dashboard .dashboard-util .button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.dashboard .dashboard-util .button-container .btn-active {
+  background-color: #7b68ee;
+}
+
+.dashboard .dashboard-util .button-container button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 2px solid #7b68ee;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #fff;
+}
+
+.dashboard .dashboard-util .button-container button:hover {
+  background-color: #7b68ee;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dashboard .dashboard-util .button-container button:active {
+  background-color: #7b68ee;
+  color: #fff;
+}
+
+.dashboard .button-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 599px) {
+  .dashboard .button-container {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 600px) {
+  .dashboard .button-container {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .dashboard .button-container {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard .button-container {
+    padding: 10px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.dashboard .button-container .slider:hover {
+  cursor: pointer;
+}
+
+.dashboard .button-container .reset-btn {
+  border: 2px solid red;
+}
+
+.dashboard .button-container .reset-btn:hover {
+  background-color: red;
+}
+
+.dashboard .button-container .btn-active {
+  background-color: #7b68ee;
+}
+
+.dashboard .button-container button {
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid #7b68ee;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #fff;
+}
+
+.dashboard .button-container button:hover {
+  background-color: #7b68ee;
+  color: #fff;
+  cursor: pointer;
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.graph-container .which-vis {
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 20px;
+}
+
+.graph-container .which-vis h2 {
+  display: inline-block;
+  gap: 10px;
+}
+
+.graph-container .graph {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  width: 90%;
+  height: 500px;
+  margin: 0 auto;
+  border-bottom: 2px solid #7b68ee;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform: perspective(1500px) rotateX(15deg);
+          transform: perspective(1500px) rotateX(15deg);
+}
+
+.graph-container .graph .bar {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 20px;
+  background-color: #7b68ee;
+  -webkit-box-shadow: 2px 2px 3px 2px #000000;
+          box-shadow: 2px 2px 3px 2px #000000;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.graph-container .graph .bar:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 3px;
+}
+
+html, body {
   padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  height: 100%;
-  width: 100%;
 }
 
 .App {
   height: 100%;
+}
+
+.graph-container {
+  height: 80vh;
 }
 
 .container {
@@ -33,192 +283,6 @@
   height: 15%;
   text-align: center;
   padding: 25px;
-}
-
-.container .dashboard {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
-  height: 25%;
-  padding: 25px;
-  background-color: #3d3c3c;
-}
-
-.container .dashboard .dashboard-util {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 10px;
-}
-
-.container .dashboard .dashboard-util h1 {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: white;
-}
-
-.container .dashboard .dashboard-util .button-container {
-  width: 60%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 10px;
-}
-
-.container .dashboard .dashboard-util .button-container .btn-active {
-  background-color: #7b68ee;
-}
-
-.container .dashboard .dashboard-util button {
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #7b68ee;
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: bold;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  color: #fff;
-}
-
-.container .dashboard .dashboard-util button:hover {
-  background-color: #7b68ee;
-  color: #fff;
-  cursor: pointer;
-}
-
-.container .dashboard .dashboard-util button:active {
-  background-color: #7b68ee;
-  color: #fff;
-}
-
-.container .dashboard .button-container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-.container .dashboard .button-container .slider:hover {
-  cursor: pointer;
-}
-
-.container .dashboard .button-container .reset-btn {
-  border: 2px solid red;
-}
-
-.container .dashboard .button-container .reset-btn:hover {
-  background-color: red;
-}
-
-.container .dashboard .button-container .btn-active {
-  background-color: #7b68ee;
-}
-
-.container .dashboard .button-container button {
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #7b68ee;
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: bold;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-  color: #fff;
-}
-
-.container .dashboard .button-container button:hover {
-  background-color: #7b68ee;
-  color: #fff;
-  cursor: pointer;
-}
-
-.container .graph-container {
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: column-reverse;
-          flex-direction: column-reverse;
-}
-
-.container .graph-container .which-vis {
-  height: 10%;
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 20px;
-  margin: 10px;
-}
-
-.container .graph-container .graph {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  gap: 10px;
-  width: 90%;
-  height: 70%;
-  margin: 0 auto;
-  border-bottom: 2px solid #7b68ee;
-}
-
-.container .graph-container .graph .bar {
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  width: 25px;
-  background-color: #7b68ee;
-  -webkit-box-shadow: 0px -1px 5px 0px #000000;
-          box-shadow: 0px -1px 5px 0px #000000;
 }
 
 .container .information-container {

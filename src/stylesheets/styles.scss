@@ -1,157 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&family=Spline+Sans&display=swap');
+@import "./media_queries";
+@import "./variables";
+@import "./dashboard";
+@import "./graph";
 
-$primary-app-purple: #7b68ee;
-$primary-app-white: #fff;
-$primary-app-contrast: #3d3c3c;
-$bar-box-shadow: 0px -1px 5px 0px #000000;
-$green: #228b33;
 
-* {
-     margin: 0;
+html, body {
      padding: 0;
-     box-sizing: border-box;
-     font-family: 'Poppins', sans-serif;
+     margin: 0;
      height: 100%;
      width: 100%;
+     box-sizing: border-box;
+     font-family: 'Poppins', sans-serif;
+     
+}
+
+@mixin flexCenter($flexDirection) {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: $flexDirection;
 }
 
 .App {
      height: 100%;
 }
 
+.graph-container {
+     height: 80vh;
+}
 .container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
+     @include flexCenter(column);
      .title {
           height: 15%;
           text-align: center;
           padding: 25px;
           // border: 2px solid black;
-     }
-     .dashboard {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 25%;
-          padding: 25px;
-          background-color: $primary-app-contrast;
-          .dashboard-util {
-               display: flex;
-               flex-direction: column;
-               gap: 10px;
-               h1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: left;
-                    align-items: center;
-                    color: white;
-               }
-               .button-container {
-                    width: 60%;
-                    display: flex;
-                    gap: 10px;
-                    .btn-active {
-                         background-color: $primary-app-purple;
-                    }
-               }
-               button {
-                    width: 150px;
-                    height: 50px;
-                    border-radius: 5px;
-                    border: 2px solid $primary-app-purple;
-                    background-color: transparent;
-                    font-size: 20px;
-                    font-weight: bold;
-                    transition: 0.2s;
-                    color: $primary-app-white;
-                    &:hover {
-                         background-color: $primary-app-purple;
-                         color: $primary-app-white;
-                         cursor: pointer;
-                    }
-                    &:active {
-                         background-color: $primary-app-purple;
-                         color: $primary-app-white;
-                    }
-               }
-          }
-          .button-container {
-               display: grid;
-               grid-template-columns: 1fr 1fr 1fr 1fr;
-               // gap: 15px;
-               .slider {
-                    &:hover {
-                         cursor: pointer;
-                    }
-               }
-               .reset-btn {
-                    border: 2px solid red;
-                    &:hover {
-                         background-color: red;
-                    }
-               }
-               .btn-active {
-                    background-color: $primary-app-purple;
-               }
-               button {
-                    width: 150px;
-                    height: 50px;
-                    border-radius: 5px;
-                    border: 2px solid $primary-app-purple;
-                    background-color: transparent;
-                    font-size: 20px;
-                    font-weight: bold;
-                    transition: 0.2s;
-                    color: $primary-app-white;
-                    &:hover {
-                         background-color: $primary-app-purple;
-                         color: $primary-app-white;
-                         cursor: pointer;
-                    }
-               }
-          }
-     }
-     .graph-container {
-          width: 100%;
-          height: 100%;
-          padding: 10px;
-          // border: 2px solid black;
-          display: flex;
-          justify-content: center;
-          align-items: flex-end;
-          flex-direction: column-reverse;
-          .which-vis {
-               height: 10%;
-               text-align: center;
-               display: flex;
-               font-size: 20px;
-               margin: 10px;
-               
-          }
-          .graph {
-               display: flex;
-               justify-content: center;
-               align-items: flex-end;
-               flex-direction: row;
-               gap: 10px;
-               width: 90%;
-               height: 70%;
-               margin: 0 auto;
-               border-bottom: 2px solid $primary-app-purple;
-               .bar {
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    width: 25px;
-                    background-color: #7b68ee;
-                    box-shadow: $bar-box-shadow;
-               }
-          }
-          
      }
      .information-container {
           text-align: center;

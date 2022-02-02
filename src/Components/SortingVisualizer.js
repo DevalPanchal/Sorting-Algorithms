@@ -22,6 +22,7 @@ export function SortingVisualizer() {
      function randomizeArray() {
           for (var i = 0; i < RandomArray.length; i++) {
             var bar = document.getElementById(i).style;
+            
             bar.backgroundColor = "#7b68ee";
           }
           var array = [];
@@ -41,13 +42,18 @@ export function SortingVisualizer() {
           return new Promise((resolve) => setTimeout(resolve, milliseconds));
      };
      
-     //ANIMATION FOR WHEN THE SORTING IS FINISHED
+     // ANIMATION FOR WHEN THE SORTING IS FINISHED
      async function finishedAnimation() {
           for (var i = 0; i < RandomArray.length; i++) {
                var bar = document.getElementById(i).style;
                bar.backgroundColor = "#228b33";
                await sleep(10);
           }
+     }
+
+     function checkIsSorted(arr, comparisonArray) {
+          arr = arr.sort((a, b) => a - b);
+          if (arr === comparisonArray) return true;
      }
 
      const bubbleSort = async () => {
@@ -74,15 +80,17 @@ export function SortingVisualizer() {
                          let lastbar = document.getElementById(RandomArray.length).style;
                          lastbar.backgroundColor = "white";
                          lastbar.boxShadow = "none";
+                         lastbar.content = "";
                          // Changes the Style back to original
                          bar1.backgroundColor = "#7b68ee";
                          bar2.backgroundColor = "#7b68ee";
-                         
-                         sorted = false;
                     }
                }
-               if (sorted) finishedAnimation();
+               
           }
+          let comparisonArr = RandomArray;
+          sorted = checkIsSorted(comparisonArr, RandomArray);
+          if (sorted) setTimeout(() => {finishedAnimation()}, 500); 
      }
 
      const insertionSort = async () => {
@@ -110,6 +118,7 @@ export function SortingVisualizer() {
                let lastbar = document.getElementById(RandomArray.length).style;
                lastbar.backgroundColor = "white";
                lastbar.boxShadow = "none";
+               lastbar.content = "";
                // Changes the Style back to original
                bar1.backgroundColor = "#7b68ee";
                bar2.backgroundColor = "#7b68ee";
@@ -123,7 +132,7 @@ export function SortingVisualizer() {
           let right = RandomArray.length - 1;
 
           sortQuickSort(RandomArray, left, right);
-          setTimeout(finishedAnimation, 1000);
+          setTimeout(finishedAnimation, 3000);
      }
 
      const sortQuickSort = async (arr, left, right) => {
@@ -131,7 +140,7 @@ export function SortingVisualizer() {
                let partitionIndex = partition(arr, left, right);
 
                setRandomArray([...RandomArray, arr]);
-               await sleep(animationSpeed + 60);
+               await sleep(animationSpeed + 100);
                sortQuickSort(arr, left, partitionIndex - 1);
                sortQuickSort(arr, partitionIndex + 1, right);
           }
@@ -158,6 +167,7 @@ export function SortingVisualizer() {
                          let lastBar = document.getElementById(arr.length).style;
                          lastBar.backgroundColor = "white";
                          lastBar.boxShadow = "none";
+                         lastBar.content = "";
                          bar1.backgroundColor = "#7b68ee";
                          bar2.backgroundColor = "#7b68ee";
                     }, 200);
@@ -214,18 +224,21 @@ export function SortingVisualizer() {
 
                     let bar1 = document.getElementById(k).style;
                     let bar2 = document.getElementById(i).style;
+                    let bar3 = document.getElementById(j).style;
 
-                    
                     bar1.backgroundColor = "red";
                     bar2.backgroundColor = "orange";
+                    bar3.backgroundColor = "blue";
                     
                     setTimeout(() => {
                          let lastBar = document.getElementById(arr.length).style;
 
                          lastBar.backgroundColor = "white";
                          lastBar.boxShadow = "none";
+                         lastBar.content = "";
                          bar1.backgroundColor = "#7b68ee";
                          bar2.backgroundColor = "#7b68ee";
+                         bar3.backgroundColor = "#7b68e";
                     }, 800);
                } else {
                     arr[k] = R[j];
@@ -235,18 +248,22 @@ export function SortingVisualizer() {
 
                     let bar1 = document.getElementById(k).style;
                     let bar2 = document.getElementById(i).style;
+                    let bar3 = document.getElementById(j).style;
                     
                     bar1.backgroundColor = "red";
                     bar2.backgroundColor = "orange";
+                    bar3.backgroundColor = "blue";
                     
                     setTimeout(() => {
                          let lastBar = document.getElementById(arr.length).style;
 
                          lastBar.backgroundColor = "white";
                          lastBar.boxShadow = "none";
+                         lastBar.content = "";
                          bar1.backgroundColor = "#7b68ee";
                          bar2.backgroundColor = "#7b68ee";
-                    }, 200);
+                         bar3.backgroundColor = "#7b68ee";
+                    }, 800);
                }
                k++;
           }
@@ -285,6 +302,7 @@ export function SortingVisualizer() {
                     let lastBar = document.getElementById(arr.length).style;
                     lastBar.backgroundColor = "white";
                     lastBar.boxShadow = "none";
+                    lastBar.content = "";
                     bar1.backgroundColor = "#7b68ee";
                     bar2.backgroundColor = "#7b68ee";
                } else {
@@ -314,6 +332,7 @@ export function SortingVisualizer() {
                     let lastBar = document.getElementById(arr.length).style;
                     lastBar.backgroundColor = "white";
                     lastBar.boxShadow = "none";
+                    lastBar.content = "";
                     bar1.backgroundColor = "#7b68ee";
                     bar2.backgroundColor = "#7b68ee";
                } else {
@@ -386,13 +405,13 @@ export function SortingVisualizer() {
                          <button className={ whichVisualization.name === "MERGE SORT" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "MERGE SORT", timeComplexity: "O(n log n)" });
                               mergeSort(RandomArray, RandomArray.length);
-                              setTimeout(finishedAnimation, 2000);
+                              setTimeout(finishedAnimation, 2500);
                          }}>Merge Sort</button>
                          <button className={ whichVisualization.name === "HEAP SORT (MAX HEAP)" ? "btn-active" : "" } onClick={() => {
                               setWhichVisualization({ name: "HEAP SORT (MAX HEAP)", timeComplexity: "O(n log n)" });
                               heapSort(RandomArray, RandomArray.length);
                          }}>Heap Sort</button>
-                         <input className="slider" id="myRange" type="range" min={ 10 } max={ 100 } defaultValue={ numBars } onChange={(e) => {
+                         <input className="slider" id="myRange" type="range" min={ 10 } max={ 60 } defaultValue={ numBars } onChange={(e) => {
                               setNumBars(e.target.value);
                               checkReset();
                          }} />
@@ -411,7 +430,11 @@ export function SortingVisualizer() {
                          {
                               RandomArray &&
                               RandomArray.map((item, index) => (
-                                   <div className="bar" id={ index } key={ index } style={{ height: item }}></div>
+                                   <div className="bar" id={ index } key={ index } style={{ height: item }}>
+                                        {/* {
+                                             RandomArray.length < 25 && <p>{ index }</p>
+                                        } */}
+                                   </div>
                               ))
                          }
                     </div>
